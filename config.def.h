@@ -45,6 +45,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod1Mask
+#define WINKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -68,11 +69,13 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 static const char monitorname[] = "bpytop";
+static const char tfmname[] = "ranger";
 
 // 添加 %wheel ALL=(ALL) NOPASSWD: /bin/shutdown 到 /etc/sudoers 以 允许关机
 static const char *shutdowncmd[] = { "sudo", "/bin/shutdown", "--poweroff", "now", NULL };
 static const char *rebootcmd[] = { "sudo", "/bin/shutdown", "--reboot", "now", NULL };
 static const char *monitorcmd[] = { "st", monitorname, NULL};
+static const char *tfmcmd[] = { "st", tfmname, NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -81,6 +84,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } }, // “XK_grave”者， “`”也
 	{ MODKEY,                       XK_F1,     spawn,          {.v = shutdowncmd} },
 	{ MODKEY,                       XK_F2,     spawn,          {.v = rebootcmd } },
+	{ WINKEY,                       XK_e,      spawn,          {.v = tfmcmd } },
 	{ ControlMask|ShiftMask,        XK_Escape, spawn,          {.v = monitorcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
