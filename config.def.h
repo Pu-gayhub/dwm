@@ -81,6 +81,7 @@ static const char *shutdowncmd[] = { "sudo", "/bin/shutdown", "--poweroff", "now
 static const char *rebootcmd[] = { "sudo", "/bin/shutdown", "--reboot", "now", NULL };
 static const char *monitorcmd[] = { "st", monitorname, NULL};
 static const char *tfmcmd[] = { "st", tfmname, NULL };
+static const char *screencmd[] = { "flameshot", "gui", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -91,6 +92,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F2,     spawn,          {.v = rebootcmd } },
 	{ WINKEY,                       XK_e,      spawn,          {.v = tfmcmd } },
 	{ ControlMask|ShiftMask,        XK_Escape, spawn,          {.v = monitorcmd } },
+	{ WINKEY|ShiftMask,             XK_s,      spawn,          {.v = screencmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
