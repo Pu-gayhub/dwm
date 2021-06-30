@@ -1,0 +1,181 @@
+.TH DWM 1 dwm\-VERSION
+.SH 名称
+dwm \- 动态窗口管理器
+.SH 概述
+.B dwm
+.RB [ \-v ]
+.SH 描述
+dwm 是一个 X 下的窗口管理器。有平铺、独占和浮动三种模式。布局可以动态改变，以适应需求显示窗口.
+.P
+在平铺模式中，屏幕被分为主区域和堆叠区。屏幕左侧为主区域，默认显示一个窗口；右侧为堆叠区，显示其余窗口。主区域显示的窗口数量可以调整为从〇到任意数量。在独占模式中，单个窗口被最大化显示。在浮动模式中，窗口可以自由移动和拉伸。对话窗口以浮动模式显示，不受设置的模式影响。
+.P
+窗口以标签分组。每个窗口可以在一个多或多个标签显示。标签可以被选择，选中标签中的窗口会同时显示于屏幕。
+.P
+屏幕顶部状态栏显示可用标签、当前布局、焦点窗口标题和信息区，信息区文本默认为 X 根窗口名。在窗口标题前，浮动窗口以空方块显示，最大化的浮动窗口以实方块表示。所选的标签以不同颜色表示。在标签左上方，焦点窗口以实方块表示。应用于一个或多个窗口的标签在左上方用一个空方块表示。
+.P
+dwm 会在窗口周围绘制一个边框表示焦点状态。
+.P
+On start, dwm can start additional programs that may be specified in two special
+shell scripts (see the FILES section below), autostart_blocking.sh and
+autostart.sh.  The former is executed first and dwm will wait for its
+termination before starting.  The latter is executed in the background before
+dwm enters its handler loop.
+.P
+Either of these files may be omitted.
+.SH 选项
+.TP
+.B \-v
+将版本信息打印到 stderr，然后退出。
+.SH 使用
+.SS 状态栏
+.TP
+.B X 根窗口名
+显示在状态栏信息区，可以使用
+.BR xsetroot (1)
+设置。
+.TP
+.B Button1 (鼠标左键)
+切换到点击标签。点击当前布局可以切换平铺与浮动模式。
+.TP
+.B Button3 (鼠标右键)
+选中标签，其窗口将同时显示。点击已选标签取消。
+.TP
+.B Mod1(默认Alt)\-Button1
+将当前标签下的焦点窗口移动到点击标签。
+.TP
+.B Mod1\-Button3
+将当前标签下的焦点窗口扩展到点击标签。再次点击取消。
+.SS 键盘命令
+.TP
+.B Mod1\-Shift\-Return(回车)
+启动
+.BR st(1)。
+.TP
+.B Mod1\-p
+启动
+.BR dmenu(1)
+运行其他程序。
+.TP
+.B Mod1\-,
+如果有多个屏幕，切换焦点到上一个屏幕。
+.TP
+.B Mod1\-.
+如果有多个屏幕，切换焦点到下一个屏幕。
+.TP
+.B Mod1\-Shift\-,
+如果有多个屏幕，将焦点窗口发送至上一个屏幕。
+.TP
+.B Mod1\-Shift\-.
+如果有多个屏幕，将焦点窗口发送至下一个屏幕。
+.TP
+.B Mod1\-b
+开关状态栏。
+.TP
+.B Mod1\-t
+切换到平铺模式。
+.TP
+.B Mod1\-f
+切换到浮动模式。
+.TP
+.B Mod1\-m
+切换到独占模式。
+.TP
+.B Mod1\-space
+在最近布局与当前布局之间切换。
+.TP
+.B Mod1\-j
+将焦点移动到下一个窗口。
+.TP
+.B Mod1\-k
+将焦点移动到上一个窗口。
+.TP
+.B Mod1\-i
+减少主区域窗口数量。
+.TP
+.B Mod1\-d
+增加主区域窗口数量。
+.TP
+.B Mod1\-l
+减小主区域窗口尺寸。
+.TP
+.B Mod1\-h
+增大主区域窗口尺寸。
+.TP
+.B Mod1\-Return
+将焦点窗口在主区域与堆叠区之间切换 (限平铺模式)。
+.TP
+.B Mod1\-Shift\-c
+关闭焦点窗口。
+.TP
+.B Mod1\-Shift\-space
+将焦点窗口在平铺状态与浮动状态之间切换。
+.TP
+.B Mod1\-Tab
+切换到最近选择的标签。
+.TP
+.B Mod1\-Shift\-[1..n]
+移动焦点窗口至第n个标签。
+.TP
+.B Mod1\-Shift\-0
+扩展焦点窗口至所有标签。
+.TP
+.B Mod1\-Control\-Shift\-[1..n]
+扩展焦点窗口至第n个标签。再次取消。
+.TP
+.B Mod1\-[1..n]
+切换到第n个标齐。
+.TP
+.B Mod1\-0
+选中所有标签。
+.TP
+.B Mod1\-Control\-[1..n]
+选中第n个标签。
+.TP
+.B Mod1\-Shift\-q
+退出 dwm。
+.SS 鼠标命令
+.TP
+.B Mod1\-Button1
+拖动选中窗口。平铺窗口将转为浮动状态。
+.TP
+.B Mod1\-Button2
+将选中窗口在平铺状态与浮动状态之间切换。
+.TP
+.B Mod1\-Button3
+改变选中窗口大小。平铺窗口将转为浮动状态。
+.SH 文件
+The files containing programs to be started along with dwm are searched for in
+the following directories:
+.IP "1. $XDG_DATA_HOME/dwm"
+.IP "2. $HOME/.local/share/dwm"
+.IP "3. $HOME/.dwm"
+.P
+The first existing directory is scanned for any of the autostart files below.
+.TP 15
+autostart.sh
+This file is started as a shell background process before dwm enters its handler
+loop.
+.TP 15
+autostart_blocking.sh
+This file is started before any autostart.sh; dwm waits for its termination.
+.SH 定制
+dwm is customized by creating a custom config.h and (re)compiling the source
+code. This keeps it fast, secure and simple.
+.SH 亦见
+.BR dmenu (1),
+.BR st (1)
+.SH 问题
+Java applications which use the XToolkit/XAWT backend may draw grey windows only. The XToolkit/XAWT backend breaks ICCCM-compliance in recent JDK 1.5 and early
+JDK 1.6 versions, because it assumes a reparenting window manager. Possible workarounds
+are using JDK 1.4 (which doesn't contain the XToolkit/XAWT backend) or setting the
+enviro
+.BR AWT_TOOLKIT=MToolkit
+(to use the older Motif backend instead) or running
+.B xprop -root -f _NET_WM_NAME 32a -set _NET_WM_NAME LG3D
+or
+.B wmname LG3D
+(to pretend that a non-reparenting window manager is running that the
+XToolkit/XAWT backend can recognize) or when using OpenJDK setting the environment variable
+.BR _JAVA_AWT_WM_NONREPARENTING=1 .
+.SH 缺陷
+Send all bug reports with a patch to hackers@suckless.org.
