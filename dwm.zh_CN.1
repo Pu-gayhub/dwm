@@ -15,13 +15,7 @@ dwm 是一个 X 下的窗口管理器。有平铺、独占和浮动三种模式�
 .P
 dwm 会在窗口周围绘制一个边框表示焦点状态。
 .P
-On start, dwm can start additional programs that may be specified in two special
-shell scripts (see the FILES section below), autostart_blocking.sh and
-autostart.sh.  The former is executed first and dwm will wait for its
-termination before starting.  The latter is executed in the background before
-dwm enters its handler loop.
-.P
-Either of these files may be omitted.
+dwm 启动时可以运行一些应用，你可以写一个 shell 脚本运行程序（见下方 FILE 节）。
 .SH 选项
 .TP
 .B \-v
@@ -123,7 +117,7 @@ Either of these files may be omitted.
 扩展焦点窗口至第n个标签。再次取消。
 .TP
 .B Mod1\-[1..n]
-切换到第n个标齐。
+切换到第n个标签。
 .TP
 .B Mod1\-0
 选中所有标签。
@@ -144,20 +138,7 @@ Either of these files may be omitted.
 .B Mod1\-Button3
 改变选中窗口大小。平铺窗口将转为浮动状态。
 .SH 文件
-The files containing programs to be started along with dwm are searched for in
-the following directories:
-.IP "1. $XDG_DATA_HOME/dwm"
-.IP "2. $HOME/.local/share/dwm"
-.IP "3. $HOME/.dwm"
-.P
-The first existing directory is scanned for any of the autostart files below.
-.TP 15
-autostart.sh
-This file is started as a shell background process before dwm enters its handler
-loop.
-.TP 15
-autostart_blocking.sh
-This file is started before any autostart.sh; dwm waits for its termination.
+脚本文件存放在“~/.config/dwm”，你可以在其中写一个“autostart.sh”启动程序。该文件在 dwm 进入其事件循环前作为 shell 后台程序启动。
 .SH 定制
 dwm is customized by creating a custom config.h and (re)compiling the source
 code. This keeps it fast, secure and simple.
