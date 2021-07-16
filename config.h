@@ -88,7 +88,7 @@ static Key keys[] = {
 	{ WINKEY|ShiftMask,             XK_s,      spawn,          {.v = screencmd } },
 	{ MODKEY,                       XK_F1,     spawn,          {.v = shutdowncmd} },
 	{ MODKEY,                       XK_F2,     spawn,          {.v = rebootcmd } },
-	{ MODKEY,						XK_F3,     spawn,          {.v = suspendcmd }},
+	{ MODKEY,                       XK_F3,     spawn,          {.v = suspendcmd }},
 	{ WINKEY,                       XK_l,      spawn,          {.v = lockcmd } },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
